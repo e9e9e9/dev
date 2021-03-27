@@ -19,7 +19,10 @@ Dijkstrat Shortest path Algorithm : 출발 노드에서 각 노드까지의 최�
         \
          4
 */
+
 const INF = Math.pow(10, 9);
+
+// graph 생성
 const graph = [
     [],
     [[2, 4], [4, 2], [5, 1]],
@@ -29,9 +32,11 @@ const graph = [
     [[1, 1], [3, 1]]
 ]
 
+// 거리, 방문 여부 확인 리스트 생성
 const visitedList = Array(graph.length).fill(false);
 const distanceList = Array(graph.length).fill(INF);
 
+// 최단 거리 노드 확인
 function getSmallestCostNode() {
     let minValue = INF;
     let nodeIdx = 0;
@@ -57,13 +62,17 @@ function dijkstra(startNode) {
     }
 
     for (i in distanceList) {
+        //최단 거리 노트 가져오기
         const smallestCostNode = getSmallestCostNode();
+        // 방문 처리
         visitedList[smallestCostNode] = true;
 
         for (edge of graph[smallestCostNode]) {
             const adjacentNode = edge[0];
             const dist = edge[1];
             console.log(`smallestNode : ${smallestCostNode}, adjacentNode : ${adjacentNode}, dist : ${dist}, distanceList[adjacentNode] : ${distanceList[adjacentNode]}`)
+            
+            // 인접 노드 거리 갱신
             distanceList[adjacentNode] = Math.min(distanceList[smallestCostNode] + dist, distanceList[adjacentNode]);
         }
     }
