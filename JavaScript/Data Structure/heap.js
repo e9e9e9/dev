@@ -12,7 +12,7 @@ class BinaryHeap {
         this.values[idx2] = tempVal;
     }
 
-    add(val) {
+    push(val) {
         this.values.push(val);
         let currIdx = this.values.length - 1;
         let currVal = this.values[currIdx];
@@ -45,10 +45,10 @@ class BinaryHeap {
                 let rightIdx = (2 * currIdx) + 2;
                 let rightVal = this.values[rightIdx];
                 
-                if (leftVal < currVal) {
+                if (leftVal !== undefined && leftVal < currVal) {
                     this.swap(leftIdx, currIdx);
                     currIdx = leftIdx;
-                } else if (rightVal < currVal) {
+                } else if (rightVal !== undefined && rightVal < currVal) {
                     this.swap(rightIdx, currIdx);
                     currIdx = rightIdx;
                 } else {
@@ -65,13 +65,13 @@ class BinaryHeap {
   }
   
   const bh = new BinaryHeap();
-  bh.add(9);
-  bh.add(4);
-  bh.add(7);
-  bh.add(1);
-  bh.add(2);
-  bh.add(6);
-  bh.add(3);
+  bh.push(9);
+  bh.push(4);
+  bh.push(7);
+  bh.push(1);
+  bh.push(2);
+  bh.push(6);
+  bh.push(3);
 
   console.log(bh.pop());
   console.log(bh.pop());
