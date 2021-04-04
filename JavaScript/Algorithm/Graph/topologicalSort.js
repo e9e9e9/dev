@@ -8,10 +8,10 @@
         2. 큐에서 노드를 제거하고 outdegree 제거
         3. 1, 2 과정 반복
     필요 자료
-        - algorith 진행을 위한 Queue
-        - 결과 저장 list
-        - node to node 표현 2d table
-        - indegree 수 표현 list
+        - queue : algorithm 진행을 위한 Queue
+        - result : 결과 저장 list
+        - nodeList : node to node 표현 2d table
+        - indegrees : indegree 수 표현 list
 */
 
 /* graph

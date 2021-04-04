@@ -1,11 +1,17 @@
 /*
 Dijkstrat Shortest path Algorithm : 출발 노드에서 각 노드까지의 최소 비용을 구하는 알고리즘
 
-1. 출발 노드 설정
-2. 최단 거리 테이블 초기화
-3. 방문하지 않은 노드 중 최단 거리가 가장 짧은 노드 선택
-4. 해당 노드를 거쳐 가는 비용을 비교하여 최단 거리 테이블 갱신
-5. 3, 4번 과정 반복
+동작
+    1. 출발 노드 설정
+    2. 최단 거리 테이블 초기화
+    3. 방문하지 않은 노드 중 최단 거리가 가장 짧은 노드 선택
+    4. 해당 노드를 거쳐 가는 비용을 비교하여 최단 거리 테이블 갱신
+    5. 3, 4번 과정 반복
+
+필요 자료
+    - 방문 여부 리스트
+    - 최단 거리 리스트
+    - 최단 거리 노드 확인 function
 */
 
 /* graph
@@ -61,6 +67,7 @@ function dijkstra(startNode) {
         distanceList[adjacentNode] = dist;
     }
 
+    // distanceList의 크기 만큼 반복해서 확인
     for (i in distanceList) {
         //최단 거리 노트 가져오기
         const smallestCostNode = getSmallestCostNode();
