@@ -104,4 +104,4 @@ dist
 .tern-port
 
 #ignore files
-./Python/ignore
+Python/ignore/*
