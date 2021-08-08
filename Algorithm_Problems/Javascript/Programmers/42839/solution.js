@@ -26,11 +26,8 @@ function solution(numbers) {
     for (let i in numbers) {
         allCasesStr = [...allCasesStr, ...getAllCases(nums, Number(i) + 1)];
     }
-    const setOfNums = new Set(allCasesStr.map(el => el.join("")).filter(el => !el.startsWith('0')));
-    const allNums = [...setOfNums].map(el => Number(el));
+    const allNums = [...new Set(allCasesStr.map(el => el.join("")).filter(el => !el.startsWith('0')))].map(el => Number(el));
 
     const answer = allNums.filter(el => isPrime(el)).length;
     return answer;
 }
-
-solution("17");
