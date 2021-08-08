@@ -7,13 +7,11 @@ function solution(n, computers) {
             continue;
         }
         found[idx] = true;
-        console.log(idx);
         answer += 1;
         const q = [computer];
         
         while(q.length > 0) {
             const targetComputer = q.shift();
-            console.log(targetComputer);
             for (const [targetComputerIdx, connected] of targetComputer.entries()) {
                 if (targetComputerIdx != idx && !found[targetComputerIdx] && connected === 1) {
                     found[targetComputerIdx] = true;
