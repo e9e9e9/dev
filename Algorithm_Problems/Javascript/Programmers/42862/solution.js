@@ -21,6 +21,10 @@ function solution(n, lost, reserve) {
     reserve = reserve.filter((el, idx) => !removedReserveIdx.includes(idx));
     
     let answer = n - lost.length;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> e6befa5f33b6d10745c03ab1febc7fec4e4985ef
     while(reserveIdx < reserve.length && lostIdx < lost.length) {
         if (lost[lostIdx] == reserve[reserveIdx] + 1 || 
             lost[lostIdx] == reserve[reserveIdx] - 1) {
