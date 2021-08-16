@@ -10,3 +10,7 @@ let data = new Array(5).fill(2).map((val,idx)=>{
     return obj;
 });
 console.log(data);
+
+//2nd demension array
+const notWorking = new Array(n + 1).fill(new Array());
+const working = new Array(n + 1).fill().map(_ => new Array())
