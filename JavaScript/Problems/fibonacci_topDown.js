@@ -8,7 +8,7 @@ function fibo(x) {
     if (list[x] == -1) {
         list[x] = fibo(x - 1) + fibo(x - 2);
     }
-    return list[x];
+    return list[x]; // It guarantee that doesn't re-calculate
 }
 
 const result = fibo(100);

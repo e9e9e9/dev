@@ -17,7 +17,7 @@ const graph = [
     [1, 2]
   ];
 
-function bfs(graph, currNode, visited) {
+function bfs(currNode, visited) {
     const queue = [];
     queue.push(currNode);
     visited[currNode] = true;
@@ -35,4 +35,4 @@ function bfs(graph, currNode, visited) {
     }
 }
 
-bfs(graph, 1, visited);
+bfs(1, visited);

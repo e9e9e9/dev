@@ -2,17 +2,23 @@
 // O(N+M) 시간으로 구간합을 빠르게 계산
 // Prefix SUM 이용
 
-const list = new Array(10).fill(undefined).map(() => Math.floor(Math.random() * 10 + 1));
+const list = new Array(10).fill(undefined).map(() => Math.floor(Math.random() * 10 + 1)); //1 ~10
 const prefixSumList = new Array(11).fill(0);
 
 console.log(list);
 
 for (const [idx, value] of list.entries()) {
-    prefixSumList[idx + 1] = value + prefixSumList[idx];
+    if (idx == 0) {
+        prefixSumList[idx] = value;
+        continue;
+    }
+    prefixSumList[idx] = value + prefixSumList[idx - 1];
 }
 
+console.log(`prefixSumList : ${prefixSumList}`);
+
 function getIntervalSum(from, to) {
-    const result =  prefixSumList[to + 1] - prefixSumList[from];
+    const result =  prefixSumList[to] - prefixSumList[from];
     console.log(`from : ${from}, to : ${to}, result : ${result}`);
 }
 

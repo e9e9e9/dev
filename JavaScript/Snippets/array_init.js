@@ -13,9 +13,13 @@ console.log(data);
 
 //2nd demension array
 const n = 3;
+
+// shallow copy
 const notWorking = new Array(n + 1).fill(new Array());
 notWorking[0][0] = 10;
 console.log(notWorking);
+
+// depp copy
 const working = new Array(n + 1).fill().map(_ => new Array());
 working[0][0] = 10;
 console.log(working);

@@ -1,0 +1,11 @@
+{
+    "code-runner.languageIdToFileExtensionMap": {
+
+        "bat": ".bat",
+        "powershell": ".ps1",
+        "typescript": ".ts"
+    },
+    "files.associations": {
+        "*.js": "javascript"
+    },
+}

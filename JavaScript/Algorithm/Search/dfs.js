@@ -17,16 +17,16 @@ const graph = [
     [1, 2]
   ];
 
-function dfs(graph, currNode, visited) {
+function dfs(currNode, visited) {
     visited[currNode] = true;
     
     console.log(`${currNode} `);
 
     for (node of graph[currNode]) {
         if (visited[node] !== true) {
-            dfs(graph, node, visited);
+            dfs(node, visited);
         }
     }
 }
 
-dfs(graph, 1, visited);
+dfs(1, visited);

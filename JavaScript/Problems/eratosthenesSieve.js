@@ -1,4 +1,5 @@
-const isPrimeNumList = Array(1000001).fill(true);
+const nums = 10001;
+const isPrimeNumList = Array(nums).fill(true);
 
 function es(){
     isPrimeNumList[0] = false;
@@ -14,10 +15,33 @@ function es(){
             }
         }
     }
+}
 
-    for (const [idx, isPrimeNum] of isPrimeNumList.entries()) {
-        console.log(`${idx} is ${isPrimeNum ? "Prime Number" : "Not Prime Number"}`);
+function showRandomNumsResult(cnt) {
+    const randomIdxs = 
+        Array.from({length: nums - 1}, (el, idx) => idx + 1)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, cnt);
+    for (idx of randomIdxs) {
+        console.log(`${idx} is ${isPrimeNumList[idx] ? "Prime Number" : "Not Prime Number"}`);
+    }
+}
+
+function showAllPrimes() {
+    const allPrimes = isPrimeNumList.map((el, idx) => {
+        if (el) {
+            if (idx !== 0) {
+                return idx;
+            }
+        }
+    })
+    .filter((el) => (typeof(el) === 'number'))
+
+    for (prime of allPrimes) {
+        console.log(prime);
     }
 }
 
 es();
+showAllPrimes();
+showRandomNumsResult(10);
