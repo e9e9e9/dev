@@ -1,4 +1,4 @@
-const source = [1,2,3,4];
+const source = [1,2,3,4,5,6];
 const permutation = (src) => {
     if (src.length === 1) {
         return src.map(el => [el]);

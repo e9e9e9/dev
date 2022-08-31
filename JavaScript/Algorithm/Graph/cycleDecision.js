@@ -67,6 +67,7 @@ function decideCycle(edges) {
             isCycle = true;
             break;
         } else {
+            // 마지막 조사까지 같은 부모가 나오지 않았다는 것은 Cycle이 없다는 것을 말한다.
             union(parents, edge[0], edge[1]);
         }
     }
