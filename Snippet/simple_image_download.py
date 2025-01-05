@@ -8,4 +8,4 @@ response = sid.simple_image_download
 # response().download('에어컨', 100)
 # response().download('청소기', 100)
 # response().download('공기청정기', 100)
-response().download('로봇청소기', 100)
+response().download('로봇청소기', 1)
