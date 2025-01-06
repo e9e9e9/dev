@@ -12,7 +12,7 @@ console.log(data);
 // const id = 1;
 // const obj = {id}; // 동일하게 {id: id}와 같다
 
-data = Array.from({length: 10}, (_, id) => ({id}))
+data = Array.from({ length: 10 }, (_, id) => ({ id }));
 console.log(data);
 // [
 //     { id: 0 }, { id: 1 },
@@ -22,31 +22,30 @@ console.log(data);
 //     { id: 8 }, { id: 9 }
 //   ]
 
-data = new Array(5).fill(2).map((val,idx)=>{
-    let obj = {};
-    obj[idx] = val;
-    return obj;
+data = new Array(5).fill(2).map((val, idx) => {
+  let obj = {};
+  obj[idx] = val;
+  return obj;
 });
 console.log(data);
 // [ { '0': 2 }, { '1': 2 }, { '2': 2 }, { '3': 2 }, { '4': 2 } ]
 
-//2nd demension array 
+//2nd demension array
 const n = 3;
 
 // shallow copy
-const notWorking = new Array(n + 1).fill(new Array());
+const notWorking = new Array(n + 1).fill(Array(4));
 notWorking[0][0] = 10;
 console.log(notWorking);
 // [ [ 10 ], [ 10 ], [ 10 ], [ 10 ] ]
 
 // deep copy
-const working = new Array(n + 1).fill().map(_ => new Array(4).fill(3));
+const working = new Array(n + 1).fill().map((_) => new Array(4).fill(3));
 working[0][0] = 10;
 console.log(working);
 // [ [ 10, 3, 3, 3 ], [ 3, 3, 3, 3 ], [ 3, 3, 3, 3 ], [ 3, 3, 3, 3 ] ]
 
-console.log( new Array(n + 1));
-console.log( new Array(n + 1).fill());
+console.log(new Array(n + 1));
+console.log(new Array(n + 1).fill());
 
-console.log([].sort((a,b) => a-b).at(-1));
-
+console.log([].sort((a, b) => a - b).at(-1));

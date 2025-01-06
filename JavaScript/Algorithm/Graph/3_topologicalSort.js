@@ -1,5 +1,5 @@
 /*
-위상정렬 : 사이클ㅇ이 없는 방향 그래프의 모든 노드를 방향성에 거스르지 않도록 순서대로 나열하는 정렬
+위상정렬 : 사이클이 없는 방향 그래프의 모든 노드를 방향성에 거스르지 않도록 순서대로 나열하는 정렬
     중요 개념
         - Indegree : 노드로 들어오는 간선 수
         - outdegree : 노드에서 나가는 간선 수
@@ -28,41 +28,39 @@ const nodeList = Array.from(Array(6), () => []);
 const indegrees = Array(6).fill(0);
 
 const edges = [
-    [1, 2],
-    [1, 4],
-    [1, 5],
-    [2, 3],
-    [4, 2],
-    [5, 2],
+  [1, 2],
+  [1, 4],
+  [1, 5],
+  [2, 3],
+  [4, 2],
+  [5, 2],
 ];
 
 // initialize indegree list
 for (edge of edges) {
-    nodeList[edge[0]].push(edge[1]);
-    indegrees[edge[1]] += 1;
+  nodeList[edge[0]].push(edge[1]);
+  indegrees[edge[1]] += 1;
 }
 
 // initialize graph
 for ([idx, indegree] of indegrees.entries()) {
-    if (idx !== 0 && indegree === 0) {
-        queue.push(idx);
-    }
+  if (idx !== 0 && indegree === 0) {
+    queue.push(idx);
+  }
 }
 
 // run algorithm
-while(queue.length > 0) {
-    
-    const target = queue.shift();
-    result.push(target);
-    for (node of nodeList[target]) {
-        // Step 2. Remove outdegree of target node
-        indegrees[node] -= 1;
-        // Step 1. Push node that indegree is 0
-        if (indegrees[node] === 0) {
-            queue.push(node);
-        }
+while (queue.length > 0) {
+  const target = queue.shift();
+  result.push(target);
+  for (node of nodeList[target]) {
+    // Step 2. Remove outdegree of target node
+    indegrees[node] -= 1;
+    // Step 1. Push node that indegree is 0
+    if (indegrees[node] === 0) {
+      queue.push(node);
     }
+  }
 }
 
 console.log(result);
-
