@@ -30,13 +30,26 @@ const INF = Math.pow(10, 9);
 
 // graph 생성
 const graph = [
-    [],
-    [[2, 4], [4, 2], [5, 1]],
-    [[1, 4,], [3, 2]],
-    [[2, 2], [5, 1]],
-    [[1, 2]],
-    [[1, 1], [3, 1]]
-]
+  [],
+  [
+    [2, 4],
+    [4, 2],
+    [5, 1],
+  ],
+  [
+    [1, 4],
+    [3, 2],
+  ],
+  [
+    [2, 2],
+    [5, 1],
+  ],
+  [[1, 2]],
+  [
+    [1, 1],
+    [3, 1],
+  ],
+];
 
 // 거리, 방문 여부 확인 리스트 생성
 const visitedList = Array(graph.length).fill(false);
@@ -44,48 +57,53 @@ const distanceList = Array(graph.length).fill(INF);
 
 // 최단 거리 노드 확인
 function getSmallestCostNode() {
-    let minValue = INF;
-    let nodeIdx = 0;
-    
-    for ([idx, distance] of distanceList.entries()) {
-        if (distance < minValue && visitedList[idx] === false) {
-            minValue = distance;
-            nodeIdx = idx;
-        }
+  let minValue = INF;
+  let nodeIdx = 0;
+
+  for ([idx, distance] of distanceList.entries()) {
+    if (distance < minValue && visitedList[idx] === false) {
+      minValue = distance;
+      nodeIdx = idx;
     }
-    return nodeIdx;
+  }
+  return nodeIdx;
 }
 
 function dijkstra(startNode) {
-    distanceList[startNode] = 0;
-    visitedList[startNode] = true;
+  distanceList[startNode] = 0;
+  visitedList[startNode] = true;
 
-    // 시작 노드 초기화
-    for (edge of graph[startNode]) {
-        const adjacentNode = edge[0];
-        const dist = edge[1];
-        distanceList[adjacentNode] = dist;
-    }
+  // 시작 노드 초기화
+  for (edge of graph[startNode]) {
+    const adjacentNode = edge[0];
+    const dist = edge[1];
+    distanceList[adjacentNode] = dist;
+  }
 
-    // distanceList의 크기 만큼 반복해서 확인
-    for (i in distanceList) {
-        //최단 거리 노트 가져오기
-        const smallestCostNode = getSmallestCostNode();
-        // 방문 처리
-        visitedList[smallestCostNode] = true;
+  // distanceList의 크기 만큼 반복해서 확인
+  for (const distance of distanceList) {
+    //최단 거리 노트 가져오기
+    const smallestCostNode = getSmallestCostNode();
+    // 방문 처리
+    visitedList[smallestCostNode] = true;
 
-        for (edge of graph[smallestCostNode]) {
-            const adjacentNode = edge[0];
-            const dist = edge[1];
-            console.log(`smallestNode : ${smallestCostNode}, adjacentNode : ${adjacentNode}, dist : ${dist}, distanceList[adjacentNode] : ${distanceList[adjacentNode]}`)
-            
-            // 인접 노드 거리 갱신
-            distanceList[adjacentNode] = Math.min(distanceList[smallestCostNode] + dist, distanceList[adjacentNode]);
-        }
+    for (edge of graph[smallestCostNode]) {
+      const adjacentNode = edge[0];
+      const dist = edge[1];
+      console.log(
+        `smallestNode : ${smallestCostNode}, adjacentNode : ${adjacentNode}, dist : ${dist}, distanceList[adjacentNode] : ${distanceList[adjacentNode]}`
+      );
+
+      // 인접 노드 거리 갱신
+      distanceList[adjacentNode] = Math.min(
+        distanceList[smallestCostNode] + dist,
+        distanceList[adjacentNode]
+      );
     }
-    for ([idx, dist] of distanceList.entries()) {
-        console.log(`idx : ${idx} dist : ${dist === INF ? 'INF' : dist}`)
-    }
+  }
+  for ([idx, dist] of distanceList.entries()) {
+    console.log(`idx : ${idx} dist : ${dist === INF ? 'INF' : dist}`);
+  }
 }
 
 dijkstra(1);
