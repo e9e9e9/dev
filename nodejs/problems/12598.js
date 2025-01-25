@@ -1,5 +1,8 @@
-// minHeap
-// Reference : https://www.digitalocean.com/community/tutorials/js-binary-heaps
+const fs = require('fs');
+const rawInput =
+  process.platform === 'linux'
+    ? fs.readFileSync(0, 'utf-8')
+    : fs.readFileSync(__dirname + '/input.txt');
 
 class BinaryHeap {
   constructor() {
@@ -83,18 +86,26 @@ class BinaryHeap {
   }
 }
 
+const inputDatas = rawInput.toString().trim().split('\n');
+
+const meetingCnt = parseInt(inputDatas[0], 10);
+const meetings = inputDatas
+  .slice(1)
+  .map((val) => val.split(' ').map((str) => Number(str)));
+const sortedMeetings = meetings.sort((a, b) => {
+  if (a[0] == b[0]) {
+    return a[1] - b[1];
+  }
+  return a[0] - b[0];
+});
+// console.log(sortedMeetings);
+
 const bh = new BinaryHeap();
-bh.push(9);
-bh.push(4);
-bh.push(7);
-bh.push(1);
-bh.push(2);
-bh.push(6);
-bh.push(3);
-
-console.log(bh.pop());
-console.log(bh.pop());
-console.log(bh.pop());
-console.log(bh.pop());
-
-bh.printHeap();
+for (const [start, end] of sortedMeetings) {
+  //   console.log(bh.peek(), start, end);
+  if (bh.length() > 0 && bh.peek() <= start) {
+    bh.pop();
+  }
+  bh.push(end);
+}
+console.log(bh.length());
