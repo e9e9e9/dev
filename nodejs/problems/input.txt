@@ -1,1 +1,8 @@
-500
+3 4
+ohhenrie
+charlie
+baesangwook
+obama
+ohhenrie
+baesangwook
+constructor
