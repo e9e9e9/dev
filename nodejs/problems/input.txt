@@ -1,8 +1,5 @@
-3 4
-ohhenrie
-charlie
-baesangwook
-obama
-ohhenrie
-baesangwook
-constructor
+4
+0 0
+0 1
+1 1
+1 1
