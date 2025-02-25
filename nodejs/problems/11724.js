@@ -1,9 +1,8 @@
-// learn : find-union의 변형
-// todo
-
-const parentArr = Array(1001)
-  .fill()
-  .map((_) => false);
+// learn : adjacentList의 응용
+// 까다롭다...
+// 문제가 좋지 않다..
+// 단일 노드를 connected component로 카운팅 한다는 내용
+// node는 1~n의 값으로 존재한다는 내용이 있으면 좋았을 것 같다.
 
 const input = require('fs')
   .readFileSync(
@@ -13,48 +12,49 @@ const input = require('fs')
   .trim()
   .split('\n');
 const [n, m] = input[0].split(' ').map(Number);
-const lines = input
-  .slice(1)
-  .map((str) => str.split(' ').map(Number))
-  .map((line) => (line[1] < line[0] ? [line[1], line[0]] : line));
-const findParent = (a) => {
-  if (parentArr[a] !== false) {
-    if (parentArr[a] !== a) {
-      parentArr[a] = findParent(parentArr[a]);
-    }
-  } else {
-    parentArr[a] = a;
-  }
-  return parentArr[a];
-};
+const lines = input.slice(1).map((str) => str.split(' ').map(Number));
 
-const union = (a, b) => {
-  const parentA = findParent(a);
-  const parentB = findParent(b);
-  if (parentA < parentB) {
-    parentArr[b] = parentA;
-  } else {
-    parentArr[a] = parentB;
-  }
-};
+const visited = Array(n + 1)
+  .fill()
+  .map((_) => false);
 
-if (m === 0) {
-  console.log(n);
-  return;
-}
+const adjacentList = Array(n + 1)
+  .fill()
+  .map((_) => []);
 
 let result = 0;
-const sortedLines = lines.sort((a, b) => a[0] - b[0]);
-console.log(sortedLines);
-for (const line of sortedLines) {
-  union(line[0], line[1]);
+for (const line of lines) {
+  const first = line[0];
+  const second = line[1];
+  adjacentList[first].push(second);
+  adjacentList[second].push(first);
 }
 
-for (let i = 1; i < parentArr.length; i++) {
-  if (parentArr[i] !== false && parentArr[i] === i) {
+for (const line of lines) {
+  const first = line[0];
+  const second = line[1];
+
+  if (visited[first] === false && visited[second] === false) {
+    result++;
+  }
+
+  const q = [first];
+  let front = 0;
+
+  while (front < q.length) {
+    if (visited[q[front]] !== true) {
+      visited[q[front]] = true;
+      q.push(...adjacentList[q[front]]);
+    }
+    front++;
+  }
+}
+
+for (let i = 1; i <= n; i++) {
+  if (visited[i] === false) {
+    visited[i] = true;
     result++;
   }
 }
 
 console.log(result);
-console.log(parentArr.slice(1, 6));
