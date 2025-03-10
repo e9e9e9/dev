@@ -1,6 +1,10 @@
 // learn
 // 시간 최소화 : array의 deep copy 수행으로 발생하는 시간 소모 제거
 // 시간 최소화 : array를 string화 해서 set의 key로 이용하는 메모제이션
+// 시간 최소화 : visit을 prev 기준으로 최적화
+// 참고 - dfs로 매우 빠르게 푸는 방법이 있음...https://www.acmicpc.net/source/91090650
+
+const { resourceLimits } = require('worker_threads');
 
 const input = require('fs')
   .readFileSync(
@@ -17,41 +21,29 @@ const nums = input[1]
   .sort((a, b) => a - b);
 
 // console.log(nums);
-const result = new Set();
+const result = [];
 const visitedSet = new Set();
 
 const solve = (prev, visited) => {
-  //   console.log('prev : ', prev, 'visited : ', visited);
+  // console.log(prev, visited);
   if (prev.length === m) {
-    result.add(prev.join('_'));
+    if (!visitedSet.has(prev.join('_'))) {
+      result.push([...prev]);
+    }
     return;
   }
 
   for (let i = 0; i < nums.length; i++) {
-    if (visitedSet.has(visited + i)) {
+    const nextPrev = [...prev, nums[i]];
+    const visitedKey = nextPrev.join('_');
+    if (visitedSet.has(visitedKey) || visited.includes(i)) {
       continue;
-    }
-    if (!visited.includes(i)) {
-      visitedSet.add(visited + i);
-      solve([...prev, nums[i]], visited + i);
-      solve([...prev], visited + i);
+    } else {
+      solve(nextPrev, [...visited, i]);
+      visitedSet.add(visitedKey);
     }
   }
 };
 
-solve([], '');
-
-const compareFn = (a, b) => {
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] === b[i]) {
-      continue;
-    }
-    return a[i] - b[i];
-  }
-};
-
-[...result]
-  .map((str) => str.split('_').map(Number))
-  .sort(compareFn)
-  .map((_) => _.join(' '))
-  .forEach((val) => console.log(val));
+solve([], []);
+result.map((_) => _.join(' ')).forEach((val) => console.log(val));
