@@ -1,4 +1,4 @@
-// learn : 이분탐색의 응용
+// lesson : 이분탐색의 응용
 const input = require('fs')
   .readFileSync(
     process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'

@@ -1,5 +1,5 @@
-// learn 1 : 잦은 console.log는 시간 초과를 일으킨다.
-// learn 2 : 메모리 해제는 즉시 수행되지 않는다. (실시간 GC를 기대하지 말 것)
+// lesson 1 : 잦은 console.log는 시간 초과를 일으킨다.
+// lesson 2 : 메모리 해제는 즉시 수행되지 않는다. (실시간 GC를 기대하지 말 것)
 
 class Heap {
   constructor() {

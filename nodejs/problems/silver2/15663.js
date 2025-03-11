@@ -1,4 +1,4 @@
-// learn
+// lesson
 // 시간 최소화 : array의 deep copy 수행으로 발생하는 시간 소모 제거
 // 시간 최소화 : array를 string화 해서 set의 key로 이용하는 메모제이션
 // 시간 최소화 : visit을 prev 기준으로 최적화

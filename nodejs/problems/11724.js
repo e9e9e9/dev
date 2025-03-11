@@ -1,4 +1,4 @@
-// learn : adjacentList의 응용
+// lesson : adjacentList의 응용
 // 까다롭다...
 // 문제가 좋지 않다..
 // 단일 노드를 connected component로 카운팅 한다는 내용

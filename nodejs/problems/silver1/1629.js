@@ -1,3 +1,7 @@
+// lesson
+// modular 연산
+// BigInt의 필요성
+
 const [a, b, c] = require('fs')
   .readFileSync(
     process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
