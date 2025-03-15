@@ -1,3 +1,9 @@
+// lesson
+// 까다로운 bfs...
+// 경계조건과 업데이트 방식과 시점을 확인하는 문제였음
+// 구현 과정 중 실수가 많이 나옴
+// 문제에서 주어진 조건인 '들어갈 수 없는 영역은 0으로 표시'에 대해 단편적으로 인식하여 일부 테스트 케이스에 대해 통과하지 못하는 경험을 함
+// 문제의 주어진 조건을 꼼꼼히 살피고 구현하는 습관 필요
 const input = require('fs')
   .readFileSync(
     process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
@@ -10,7 +16,19 @@ const [n, m] = input[0].split(' ').map(Number);
 const nums = input.slice(1).map((str) => str.split(' ').map(Number));
 const result = Array(n)
   .fill()
-  .map((val) => Array(m).fill(-1));
+  .map((val) => Array(m).fill());
+
+const updateResult = () => {
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (nums[i][j] === 0) {
+        result[i][j] = 0;
+      } else {
+        result[i][j] = -1;
+      }
+    }
+  }
+};
 const directions = [
   [1, 0],
   [0, 1],
@@ -27,6 +45,8 @@ const getTargetPoint = () => {
     }
   }
 };
+
+updateResult();
 const [targetX, targetY] = getTargetPoint();
 const q = [[targetX, targetY, 0]];
 result[targetX][targetY] = 0;
@@ -42,10 +62,6 @@ while (idx < q.length) {
       continue;
     }
     if (result[updatedX][updatedY] !== -1) {
-      continue;
-    }
-    if (nums[updatedX][updatedY] === 0) {
-      result[updatedX][updatedY] = 0;
       continue;
     }
     result[updatedX][updatedY] = dist + 1;
