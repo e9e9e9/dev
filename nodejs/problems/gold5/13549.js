@@ -1,3 +1,13 @@
+/*
+어려 테스트케이스를 고려하여 동작을 만족시키는 과정이 가장 어렵다.
+- 반복문 or 재귀를 중단해야하는 조건 설정
+- 메모제이션을 할 대상 설정과 대상의 값 설정
+- 메모를 사용하는 로직
+- 10만과 100만을 코드상 오타내는 것들...
+
+시간은 1시간 정도 걸려서 불만족스럽지만, 한 번에 문제를 풀 수 있어서 보람이 있었음
+*/
+
 const [start, target] = require('fs')
   .readFileSync(
     process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
