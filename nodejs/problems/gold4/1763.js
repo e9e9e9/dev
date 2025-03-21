@@ -2,6 +2,11 @@
 dijikstra의 응용
 - dijikstra를 복습할 수 있어서 좋았다.
 - 인접리스트가 아니라 인접테이블을 이용해 시간초과를 경험했다.
+- 참고 :
+    Heap을 이용하면 getSamllestNodeAndWeight 시간을 logN으로 단축시킬 수 있다.
+    더 빠르고, 간결한 코드
+    힙에서 pop의 값이 곧 smallist가 되고 이것을 기준으로 weight를 업데이트 할 수 있다.
+    https://www.acmicpc.net/source/91538219
 */
 
 const input = require('fs')
